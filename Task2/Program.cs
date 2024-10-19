@@ -8,28 +8,24 @@ namespace Task2
         static void Main(string[] args)
 
         {
-            Initializer();
+            StartInitializing();
 
 
         }
+        /// <summary>
+        /// If the user entered "1" it will goes here and check if the specific date valid or not,and if its leap or not.
+        /// </summary>
         static void start() {
             Console.WriteLine("welcome to is leap or not\n");
             bool tempf1, tempf2, tempf3;
             int tempday, tempmonth, tempyear;
             bool? dd = null;
-
-
-            Console.WriteLine("enter a day ");
-            tempf1 = int.TryParse(Console.ReadLine(), out tempday);
-
-            Console.WriteLine("enter a month ");
-            tempf2 = int.TryParse(Console.ReadLine(), out tempmonth);
-
+       
             Console.WriteLine("enter a year ");
             tempf3 = int.TryParse(Console.ReadLine(), out tempyear);
-            var result = checkingDatetxt(tempf1, tempf2, tempf3);
+            var result = checkingDatetxt( tempf3);
             if (result) {
-                Date date = new Date(tempday, tempmonth, tempyear);
+                Date date = new Date( tempyear);
                 dd = date.datanumberValidate();
 
                 if (dd == true) {
@@ -43,17 +39,13 @@ namespace Task2
 
                     else { Console.WriteLine("You Entered Wrong Value \ntry again "); start(); }
                 }
-
-
-
             }
 
-
-
-
-
-
         }
+        /// <summary>
+        /// to check if the user entered a right value, and goes to list all leap years or to check a specific date is a leap
+        /// depends on his chooise 0/1 and try again if he wants.
+        /// </summary>
         public static void UserSelectionValidation() {
             var userEnteredChoise = 0;
             bool userChoiseValdition = false;
@@ -75,27 +67,17 @@ namespace Task2
                 userAnswerChar=key.KeyChar;
                 if (userAnswerChar == 'y' || userAnswerChar == 'Y')
                 {
-                    Initializer();
-
+                    StartInitializing();
                 }
                 else if (userAnswerChar == 'n' || userAnswerChar == 'N')
                 {
                     Environment.Exit(0);
-
                 }
-                else { Console.WriteLine("enter valid Data"); }
-                
-                
-
-
-
+                else { Console.WriteLine("enter valid Data"); }            
             }
             else {
                 Console.WriteLine("ENTER VALID VALUE !!!!!");
-                Initializer();
-
-
-
+                StartInitializing();
             }
 
 
@@ -103,7 +85,10 @@ namespace Task2
 
 
         }
-        public static void Initializer() {
+        /// <summary>
+        /// starting a programm by this method
+        /// </summary>
+        public static void StartInitializing() {
             Console.WriteLine($"Welcome to leap year \n if you want to know the leap years press\"0\" \nOr press \"1\"if you " +
               $"want to enter specific date ");
             UserSelectionValidation();
@@ -113,22 +98,24 @@ namespace Task2
 
 
         }
+        /// <summary>
+        /// to check if the entred date are valid or not
+        /// </summary>
+        /// <param name="day"></param>
+        /// <param name="month"></param>
+        /// <param name="year"></param>
+        /// <returns>all parameters returns booolean</returns>
 
-        public static bool checkingDatetxt(bool day, bool month, bool year) {
-            var inResult = day && month && year;
+        public static bool checkingDatetxt( bool year) {
+            var inResult = year;
 
             if (inResult)
             {
-
-
                 return true;
-
-
             }
             else {
                 Console.WriteLine("Please enter valid Date");
                 start();
-
                 return false;
             }
 
@@ -136,6 +123,11 @@ namespace Task2
 
 
         }
+        /// <summary>
+        /// the user must enter valid leap  years otherwise the programm will not accept the entered value
+        /// if it is true it will send the value as arrgument to Date Constructer ,and by the date obj LeapYearsMethod will be 
+        /// called.
+        /// </summary>
 
         public static void leapyears(){
             int year1, year2;
