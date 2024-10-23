@@ -11,7 +11,7 @@ namespace GuessTheNumber
 
     public class Guessingnum
     {
-
+        public int GGh { get; set; }
 
         #region Varibles sec
         public static int choosedNumber = 0;
